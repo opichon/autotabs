@@ -21,7 +21,7 @@
         $this.children(options['tab_pane_selector']).each(function(index) {
           ul += '<li' + (index == active_tab ? ' class="current"' : '') + '>' +
                 '<a href="#' + this.id + '">' + 
-                $('h3', $(this)).get(0).innerHTML + 
+                $(options['tab_label_selector'], $(this)).get(0).innerHTML + 
                 '</a></li>'; 
         });
         ul +- '</ul>';

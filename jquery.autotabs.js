@@ -6,6 +6,7 @@
           tab_pane_selector: "div",
           tab_label_selector: "h3",
           tabs_class: "autotabs",
+          tabs_selector: "",
           active_class: "current",
           active_tab: 0,
           cookie_name: "active_tab"
@@ -20,20 +21,25 @@
         
         $this.children(options.tab_pane_selector).each(function(index) {
           ul += '<li' + (index == active_tab ? ' class="current"' : '') + '>' +
-                '<a href="#' + this.id + '">' + 
-                $(options.tab_label_selector, $(this)).get(0).innerHTML + 
+                '<a href="' + ($(this).attr('rel') ? $(this).attr('rel') : '#' + this.id) + '" rel="' + $(this).attr('id') + '">' + 
+                ($(this).attr('title') ? $(this).attr('title') : $(options.tab_label_selector, $(this)).get(0).innerHTML) + 
                 '</a></li>'; 
         });
         ul +- '</ul>';
 
-        $this.prepend(ul);
+        var tabs = (options.tabs_selector != '') ? $(options.tabs_selector) : $this;
+        if (!tabs) { tabs = $this; }
+        tabs.prepend(ul);
         
         $('ul.' + options.tabs_class + ' li > a').click(function() {
           var link = $(this);
           link.parent().addClass(options.active_class).siblings('li').removeClass(options.active_class);
           $(options.tab_pane_selector + '.' + options.active_class, $this).slideUp('fast').removeClass(options.active_class);
           $this.children(options.tab_pane_selector).each(function(index) { 
-            if (link.attr('href') == '#' + this.id) {
+            if (link.attr('rel') == this.id) {
+              if (link.attr('href').substring(0, 1) != '#') {
+                $(this).load(link.attr('href'));
+              }
               $(this).addClass(options.active_class).slideDown('fast)');
               $.cookie(options.cookie_name, index); 
             }

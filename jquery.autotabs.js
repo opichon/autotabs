@@ -49,6 +49,7 @@
 
         $this.children(options.tab_pane_selector).each(function(index) { 
           if (index == active_tab) {
+            if ($(this).attr('rel')) { $(this).load($(this).attr('rel')); }
             $(this).addClass(options.active_class).slideDown('fast');
           }
           else { $(this).slideUp('fast').removeClass(options.active_class); }

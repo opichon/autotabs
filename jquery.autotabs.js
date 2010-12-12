@@ -8,13 +8,13 @@
           tabs_class: "autotabs",
           tabs_selector: "",
           active_class: "current",
-          active_tab: 0,
+          active_tab: null,
           cookie_name: "active_tab"
         }, 
         options);
 
       var ul = '<ul class="' + options.tabs_class  + '">';
-      var active_tab = $.cookie(options.cookie_name) || options.active_tab;
+      var active_tab = (options.active_tab == null ? $.cookie(options.cookie_name) : options.active_tab) || 0;
 
       return $this.each(function() {
         if ($this.children(options.tab_pane_selector).length <= 1) { return; }
@@ -51,6 +51,7 @@
           if (index == active_tab) {
             if ($(this).attr('rel')) { $(this).load($(this).attr('rel')); }
             $(this).addClass(options.active_class).slideDown('fast');
+            $.cookie(options.cookie_name, index);
           }
           else { $(this).slideUp('fast').removeClass(options.active_class); }
         });      

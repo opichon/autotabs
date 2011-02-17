@@ -37,7 +37,7 @@
           $(options.tab_pane_selector + '.' + options.active_class, $this).slideUp('fast').removeClass(options.active_class);
           $this.children(options.tab_pane_selector).each(function(index) { 
             if (link.attr('rel') == this.id) {
-              if (link.attr('href').substring(0, 1) != '#') {
+              if (link.attr('href').substring(link.attr('href').length - this.id.length - 1, 1) != '#') {
                 $(this).load(link.attr('href'));
               }
               $(this).addClass(options.active_class).slideDown('fast)');

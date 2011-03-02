@@ -38,10 +38,11 @@
           $(options.tab_pane_selector + '.' + options.active_class, $this).slideUp('fast').removeClass(options.active_class);
           $this.children(options.tab_pane_selector).each(function(index) { 
             if (link.attr('rel') == this.id) {
-              if (link.attr('href').substring(link.attr('href').length - this.id.length - 1, 1) != '#') {
+              // in IE link.attr('href') return 'http://paymenow/...#tab1'; in Mozilla, Chrome link.attr('href') return '#tab1'.
+              if (link.attr('href').substr(link.attr('href').length - this.id.length - 1, 1) != '#') {
                 if ($(this).html() == '' || options.force_refresh) {
                   $(this).empty();
-                  var fn = (optios.success && options.success[this.id]) ? options.success[this.is] : null;
+                  var fn = (options.success && options.success[this.id]) ? options.success[this.is] : null;
                   $(this).load(link.attr('href'), fn);
                 }
               }
@@ -55,7 +56,7 @@
         $this.children(options.tab_pane_selector).each(function(index) { 
           if (index == active_tab) {
             if ($(this).attr('rel')) { 
-              var fn = (options.success & options.success[this.id]) ? options.success[this.is] : null;
+              var fn = (options.success && options.success[this.id]) ? options.success[this.is] : null;
               $(this).load($(this).attr('rel'), fn);
             }
             $(this).addClass(options.active_class).slideDown('fast');

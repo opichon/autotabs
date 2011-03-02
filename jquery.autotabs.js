@@ -9,7 +9,8 @@
           tabs_selector: "",
           active_class: "current",
           active_tab: null,
-          cookie_name: "active_tab"
+          cookie_name: "active_tab",
+          force_refresh: false
         }, 
         options);
 
@@ -38,7 +39,11 @@
           $this.children(options.tab_pane_selector).each(function(index) { 
             if (link.attr('rel') == this.id) {
               if (link.attr('href').substring(link.attr('href').length - this.id.length - 1, 1) != '#') {
-                $(this).load(link.attr('href'));
+                if ($(this).html() == '' || options.force_refresh) {
+                  $(this).empty();
+                  var fn = (optios.success && options.success[this.id]) ? options.success[this.is] : null;
+                  $(this).load(link.attr('href'), fn);
+                }
               }
               $(this).addClass(options.active_class).slideDown('fast)');
               $.cookie(options.cookie_name, index); 
@@ -49,7 +54,10 @@
 
         $this.children(options.tab_pane_selector).each(function(index) { 
           if (index == active_tab) {
-            if ($(this).attr('rel')) { $(this).load($(this).attr('rel')); }
+            if ($(this).attr('rel')) { 
+              var fn = (options.success & options.success[this.id]) ? options.success[this.is] : null;
+              $(this).load($(this).attr('rel'), fn);
+            }
             $(this).addClass(options.active_class).slideDown('fast');
             $.cookie(options.cookie_name, index);
           }

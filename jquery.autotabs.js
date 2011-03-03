@@ -42,7 +42,7 @@
               if (link.attr('href').substr(link.attr('href').length - this.id.length - 1, 1) != '#') {
                 if ($(this).html() == '' || options.force_refresh) {
                   $(this).empty();
-                  var fn = (options.success && options.success[this.id]) ? options.success[this.is] : null;
+                  var fn = (options.success && options.success[this.id]) ? options.success[this.id] : null;
                   $(this).load(link.attr('href'), fn);
                 }
               }
@@ -56,7 +56,7 @@
         $this.children(options.tab_pane_selector).each(function(index) { 
           if (index == active_tab) {
             if ($(this).attr('rel')) { 
-              var fn = (options.success && options.success[this.id]) ? options.success[this.is] : null;
+              var fn = (options.success && options.success[this.id]) ? options.success[this.id] : null;
               $(this).load($(this).attr('rel'), fn);
             }
             $(this).addClass(options.active_class).slideDown('fast');

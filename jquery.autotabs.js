@@ -10,7 +10,8 @@
           active_class: "current",
           active_tab: null,
           cookie_name: "active_tab",
-          force_refresh: false
+          force_refresh: false,
+          tab_orphans: false          // display a tab even for a single orphan child element
         }, 
         options);
 
@@ -18,14 +19,27 @@
       var active_tab = (options.active_tab == null ? $.cookie(options.cookie_name) : options.active_tab) || 0;
 
       return $this.each(function() {
-        if ($this.children(options.tab_pane_selector).length <= 1) { return; }
-        
-        $this.children(options.tab_pane_selector).each(function(index) {
-          ul += '<li' + (index == active_tab ? ' class="current"' : '') + '>' +
-                '<a href="' + ($(this).attr('rel') ? $(this).attr('rel') : '#' + this.id) + '" rel="' + $(this).attr('id') + '">' + 
-                ($(this).attr('title') ? $(this).attr('title') : $(options.tab_label_selector, $(this)).get(0).innerHTML) + 
-                '</a></li>'; 
-        });
+        var children = $this.children(options.tab_pane_selector);
+
+        switch (children.length) {
+          case 0 : 
+            return;
+
+          case 1 :
+            if (options.tab_orphans) {
+              children.show();
+              return;
+            }
+
+          default :       
+            children.each(function(index) {
+              ul += '<li' + (index == active_tab ? ' class="current"' : '') + '>' +
+                    '<a href="' + ($(this).attr('rel') ? $(this).attr('rel') : '#' + this.id) + '" rel="' + $(this).attr('id') + '">' + 
+                    ($(this).attr('title') ? $(this).attr('title') : $(options.tab_label_selector, $(this)).get(0).innerHTML) + 
+                    '</a></li>'; 
+            });
+        }
+
         ul +- '</ul>';
 
         var tabs = (options.tabs_selector != '') ? $(options.tabs_selector) : $this;

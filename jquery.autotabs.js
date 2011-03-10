@@ -26,12 +26,12 @@
             return;
 
           case 1 :
-            if (options.tab_orphans) {
+            if (!options.tab_orphans) {
               children.show();
               return;
             }
 
-          default :       
+          default :
             children.each(function(index) {
               ul += '<li' + (index == active_tab ? ' class="current"' : '') + '>' +
                     '<a href="' + ($(this).attr('rel') ? $(this).attr('rel') : '#' + this.id) + '" rel="' + $(this).attr('id') + '">' + 

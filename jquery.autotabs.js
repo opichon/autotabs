@@ -33,7 +33,7 @@
 
           default :
             children.each(function(index) {
-              ul += '<li' + (index == active_tab ? ' class="current"' : '') + '>' +
+              ul += '<li' + (index == active_tab ? ' class="' + options.active_class + '"' : '') + '>' +
                     '<a href="' + ($(this).attr('rel') ? $(this).attr('rel') : '#' + this.id) + '" rel="' + $(this).attr('id') + '">' + 
                     ($(this).attr('title') ? $(this).attr('title') : $(options.tab_label_selector, $(this)).get(0).innerHTML) + 
                     '</a></li>'; 

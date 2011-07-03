@@ -10,6 +10,7 @@
           active_class: "current",
           active_tab: null,
           cookie_name: "active_tab",
+          cookie_path: '',
           force_refresh: false,
           tab_orphans: false          // display a tab even for a single orphan child element
         }, 
@@ -61,7 +62,7 @@
                 }
               }
               $(this).addClass(options.active_class).slideDown('fast)');
-              $.cookie(options.cookie_name, index); 
+              $.cookie(options.cookie_name, index, { path: options.cookie_path }); 
             }
           });
           return false;
@@ -74,7 +75,7 @@
               $(this).load($(this).attr('rel'), fn);
             }
             $(this).addClass(options.active_class).slideDown('fast');
-            $.cookie(options.cookie_name, index);
+            $.cookie(options.cookie_name, index, { path: options.cookie_path });
           }
           else { $(this).slideUp('fast').removeClass(options.active_class); }
         });      

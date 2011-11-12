@@ -1,0 +1,45 @@
+ul.autotabs {
+	list-style: none;
+	overflow: hidden;
+  padding: 0.5em 0 1em 0;
+}
+
+ul.autotabs li {
+	list-style-type: none;
+	background-image: none;
+	display: inline;
+	float: left;
+	padding: 0;
+	margin: 0;
+	line-height: 150%;
+}
+
+ul.autotabs li a {
+	display: block;
+  float: left;
+  height: 18px;
+  border: 1px solid #666;
+  border-bottom: 0px;
+  padding: 5px 15px 5px 15px;
+  margin-right: 1px;
+  text-decoration: none;
+  background-color: #efefef;
+  color: #777;
+  -moz-border-radius-topleft: 4px;
+  -moz-border-radius-topright: 4px;
+}
+
+ul.autotabs li.current a {
+  background-color: #fff;
+  color: #000;
+  cursor: default;
+}
+
+ul.autotabs li a:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+
+
+	

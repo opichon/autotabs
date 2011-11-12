@@ -10,7 +10,7 @@
           active_class: "current",
           active_tab: null,
           cookie_name: "active_tab",
-          cookie_path: '/',
+          cookie_path: '',
           force_refresh: false,
           tab_orphans: false          // display a tab even for a single orphan child element
         }, 

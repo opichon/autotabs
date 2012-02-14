@@ -2,18 +2,8 @@
   var methods = {
     init: function(options) {
       var $this = $(this);
-      var options = $.extend({
-          tab_pane_selector: "div",
-          tab_label_selector: "h3",
-          tabs_class: "autotabs",
-          tabs_selector: "",
-          active_class: "current",
-          active_tab: null,
-          cookie_name: "active_tab",
-          cookie_path: '/',
-          force_refresh: false,
-          tab_orphans: false          // display a tab even for a single orphan child element
-        }, 
+      var options = $.extend({},
+        this.autotabs.defaults, 
         options);
 
       var ul = '<ul class="' + options.tabs_class  + '">';
@@ -41,7 +31,7 @@
             });
         }
 
-        ul +- '</ul>';
+        ul += '</ul>';
 
         var tabs = (options.tabs_selector != '') ? $(options.tabs_selector) : $this;
         if (!tabs) { tabs = $this; }
@@ -94,9 +84,18 @@
     else {
       $.error('Method ' +  method + ' does not exist on jQuery.editInline');
     }
+  };
   
-    return this.each(function() {
-      $(this).tabs();
-    });
+  $.fn.autotabs.defaults = {
+      tab_pane_selector: "div",
+      tab_label_selector: "h3",
+      tabs_class: "autotabs",
+      tabs_selector: "",
+      active_class: "current",
+      active_tab: null,
+      cookie_name: "active_tab",
+      cookie_path: '/',
+      force_refresh: false,
+      tab_orphans: false          // display a tab even for a single orphan child element      
   };
 })(jQuery);

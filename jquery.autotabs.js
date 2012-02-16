@@ -41,7 +41,6 @@
           if (!tabs) { tabs = $this; }
           tabs.prepend(ul);
  
-          
           $('ul.' + options.tabs_class + ' li > a').click(function() {
             var link = $(this);
             link.parent().addClass(options.active_class).siblings('li').removeClass(options.active_class);

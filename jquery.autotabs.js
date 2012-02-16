@@ -50,9 +50,9 @@
             $this.children(options.tab_pane_selector).each(function(index) { 
               if (link.attr('rel') == this.id) {
                 try {
-                helpers.load(this);
+                  helpers.load(this);
                 }
-                catch (e) { alert(e); }
+                catch (e) { console.log(e); }
               }
             }); 
             return false;

@@ -102,7 +102,7 @@
       return methods.init.apply(this, arguments);
     } 
     else {
-      $.error('Method ' +  method + ' does not exist on jQuery.editInline');
+      $.error('Method ' +  method + ' does not exist in jQuery.autotabs');
     }
   };
   

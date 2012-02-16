@@ -40,6 +40,9 @@ ul.autotabs li a:hover {
   color: #000;
 }
 
+.tab-pane { display: none; }
+.current { display: block; }
+
 
 
 	

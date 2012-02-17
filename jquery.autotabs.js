@@ -86,11 +86,11 @@
       
       getSuccess: function(id) {
         if (!options.success) { return null; }
-        if ($.isArray(options.success)) {
-          return options.success[id];
+        if ($.isFunction(options.success)) {
+          return options.success;
         }
-        
-        return options.success;
+          
+        return options.success[id];
       }
     };
 

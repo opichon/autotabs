@@ -11,7 +11,9 @@
           params);
 
         var ul = '<ul class="' + options.tabs_class  + '">';
-        active_tab_index = (options.active_tab == null ? $.cookie(options.cookie_name) : options.active_tab) || 0;
+        active_tab_index = (options.active_tab == null ? 
+                             ($.cookie ? $.cookie(options.cookie_name) : 0) : 
+                             options.active_tab) || 0;
 
         return $this.each(function() {
           var children = $this.children(options.tab_pane_selector);
@@ -43,10 +45,17 @@
  
           $('ul.' + options.tabs_class + ' li > a').click(function() {
             var link = $(this);
-            link.parent().addClass(options.active_class).siblings('li').removeClass(options.active_class);
-            $(options.tab_pane_selector + '.' + options.active_class, $this).slideUp('fast').removeClass(options.active_class);
             
-            $this.children(options.tab_pane_selector).each(function(index) { 
+            if ($.cookie) {
+              $.cookie(options.cookie_name, active_tab_index, { path: options.cookie_path });  
+            }
+
+            link.parent().addClass(options.active_class).siblings('li').removeClass(options.active_class);
+            $this.children(options.tab_pane_selector).each(function() {
+              $(this).slideUp('fast').removeClass(options.active_class);
+            });
+            
+            $this.children(options.tab_pane_selector).each(function() { 
               if (link.attr('rel') == this.id) {
                 try {
                   helpers.load(this);
@@ -54,6 +63,7 @@
                 catch (e) { console.log(e); }
               }
             }); 
+                
             return false;
           });
  
@@ -71,16 +81,17 @@
         if (url = $(pane).attr('rel')) {
           if ($(pane).html() == '' || options.force_refresh) {
             $(pane).empty();
-            var fn = (options.success && options.success[pane.id]) ? options.success[pane.id] : null;
-            $(pane).load(url, success);
+            $(pane).load(url, function() {
+              $(pane).slideDown('fast').addClass(options.active_class);
+              if (success && $.isFunction(success)) {
+                success.call(pane);
+              };
+            });
           }
         }
         else {
+          $(pane).slideDown('fast').addClass(options.active_class);
           if (success && $.isFunction(success)) { success.call(pane); }
-          $(pane).addClass(options.active_class).slideDown('fast)');
-          if ($.cookie) {
-            $.cookie(options.cookie_name, active_tab_index, { path: options.cookie_path });  
-          }
         }
       },
       

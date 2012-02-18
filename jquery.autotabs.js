@@ -78,16 +78,14 @@
     var helpers = {
       load: function(pane) {
         var success = helpers.getSuccess(pane.id);
-        if (url = $(pane).attr('rel')) {
-          if ($(pane).html() == '' || options.force_refresh) {
-            $(pane).empty();
-            $(pane).load(url, function() {
-              $(pane).slideDown('fast').addClass(options.active_class);
-              if (success && $.isFunction(success)) {
-                success.call(pane);
-              };
-            });
-          }
+        if (url = $(pane).attr('rel') && ($(pane).html() == '' || options.force_refresh)) {
+          $(pane).empty();
+          $(pane).load(url, function() {
+            $(pane).slideDown('fast').addClass(options.active_class);
+            if (success && $.isFunction(success)) {
+              success.call(pane);
+            };
+          });
         }
         else {
           $(pane).slideDown('fast').addClass(options.active_class);

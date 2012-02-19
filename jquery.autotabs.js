@@ -46,19 +46,19 @@
           $('ul.' + options.tabs_class + ' li > a').click(function() {
             var link = $(this);
             
-            if ($.cookie) {
-              $.cookie(options.cookie_name, active_tab_index, { path: options.cookie_path });  
-            }
-
             link.parent().addClass(options.active_class).siblings('li').removeClass(options.active_class);
             $this.children(options.tab_pane_selector).each(function() {
               $(this).slideUp('fast').removeClass(options.active_class);
             });
             
-            $this.children(options.tab_pane_selector).each(function() { 
+            $this.children(options.tab_pane_selector).each(function(index) { 
               if (link.attr('rel') == this.id) {
                 try {
                   helpers.load(this);
+                  if ($.cookie) {
+                    $.cookie(options.cookie_name, index, { path: options.cookie_path });  
+                  }
+
                 }
                 catch (e) { console.log(e); }
               }

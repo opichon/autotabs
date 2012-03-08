@@ -1,7 +1,8 @@
 (function($) {
   $.fn.autotabs = function(method) {
     var options,
-        active_tab_index;
+        active_tab_index,
+        processing = false;
     
     var methods = {
       init: function(params) {
@@ -44,6 +45,10 @@
           tabs.prepend(ul);
  
           $('ul.' + options.tabs_class + ' li > a').click(function() {
+            if (processing) { return false; }
+            helpers.showLoadingIcon(options);
+            processing = true;
+            if (options.loading_icon) 
             var link = $(this);
             
             link.parent().addClass(options.active_class).siblings('li').removeClass(options.active_class);
@@ -85,11 +90,15 @@
             if (success && $.isFunction(success)) {
               success.call(pane);
             };
+            processing = false;
+            helpers.hideLoadingIcon(options);
           });
         }
         else {
           $(pane).slideDown('fast').addClass(options.active_class);
           if (success && $.isFunction(success)) { success.call(pane); }
+          processing = false;
+          helpers.hideLoadingIcon(options);
         }
       },
       
@@ -100,6 +109,16 @@
         }
           
         return options.success[id];
+      },
+      
+      showLoadingIcon: function(options) {
+        if (!options.loading_icon) { return; }
+        $(options.loading_icon).show();
+      }, 
+      
+      hideLoadingIcon: function(options) {
+        if (!options.loading_icon) { return; }
+        $(options.loading_icon).hide();
       }
     };
 
@@ -125,6 +144,7 @@
       cookie_name: "active_tab",
       cookie_path: '/',
       force_refresh: false,
-      tab_orphans: false          // display a tab even for a single orphan child element      
+      tab_orphans: false,          // display a tab even for a single orphan child element
+      loading_icon: '#loading'
   };
 })(jQuery);

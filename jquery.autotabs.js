@@ -151,6 +151,7 @@
       cookie_path: '/',
       force_refresh: false,
       tab_orphans: false,          // display a tab even for a single orphan child element
-      loading_icon: '#loading'
+      loading_icon: '#loading',
+      tab_id: function(id) { return '__' + id; }
   };
 })(jQuery);

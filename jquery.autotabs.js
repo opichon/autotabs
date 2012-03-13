@@ -31,7 +31,7 @@
 
             default :
               children.each(function(index, element) {
-                ul += helpers.tab(index, element);
+                ul += helpers.generate_tab(index, element);
               });
           }
 

@@ -30,11 +30,8 @@
               }
 
             default :
-              children.each(function(index) {
-                ul += '<li' + (index == active_tab_index ? ' class="' + options.active_class + '"' : '') + '>' +
-                      '<a href="' + ($(this).attr('rel') ? $(this).attr('rel') : '#' + this.id) + '" rel="' + $(this).attr('id') + '">' + 
-                      ($(this).attr('title') ? $(this).attr('title') : $(options.tab_label_selector, $(this)).get(0).innerHTML) + 
-                      '</a></li>'; 
+              children.each(function(index, element) {
+                ul += helpers.tab(index, element);
               });
           }
 
@@ -81,6 +78,15 @@
     };
     
     var helpers = {
+      generate_tab: function(index, element) {
+        var tab = '<li' + (index == active_tab_index ? ' class="' + options.active_class + '"' : '') + 
+                  (options.tab_id && $.isFunction(options.tab_id) ? ' id="' + options.tab_id(element.id) + '">' : '>') +
+                  '<a href="' + ($(element).attr('rel') || '#' + element.id) + '" rel="' + $(element).attr('id') + '">' + 
+                  ($(element).attr('title') || $(options.tab_label_selector, $(element)).get(0).innerHTML) + 
+                  '</a></li>';
+        return tab;
+      },
+        
       load: function(pane) {
         var success = helpers.getSuccess(pane.id);
         if ((url = $(pane).attr('rel')) && ($(pane).html().trim() == '' || options.force_refresh)) {

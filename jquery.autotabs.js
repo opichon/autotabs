@@ -41,11 +41,11 @@
           if (!tabs) { tabs = $this; }
           tabs.prepend(ul);
  
-          $('ul.' + options.tabs_class + ' li > a').click(function() {
+          $('ul.' + options.tabs_class + ' li > a', tabs).click(function() {
             if (processing) { return false; }
-            helpers.showLoadingIcon(options);
             processing = true;
-            if (options.loading_icon) 
+            helpers.showLoadingIcon(options);
+
             var link = $(this);
             
             link.parent().addClass(options.active_class).siblings('li').removeClass(options.active_class);

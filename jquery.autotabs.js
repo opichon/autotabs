@@ -6,7 +6,7 @@
     
     var methods = {
       init: function(params) {
-        var $this = $(this);
+
         options = $.extend({},
           this.autotabs.defaults, 
           params);
@@ -16,7 +16,8 @@
                              ($.cookie ? $.cookie(options.cookie_name) : 0) : 
                              options.active_tab) || 0;
 
-        return $this.each(function() {
+        return this.each(function() {
+          var $this = $(this);
           var children = $this.children(options.tab_pane_selector);
  
           switch (children.length) {

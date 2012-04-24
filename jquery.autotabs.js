@@ -90,7 +90,7 @@
         
       load: function(pane) {
         var success = helpers.getSuccess(pane.id);
-        if ((url = $(pane).attr('rel')) && ($(pane).html().trim() == '' || options.force_refresh)) {
+        if ((url = $(pane).attr('rel')) && ($.trim($(pane).html()) == '' || options.force_refresh)) {
           $(pane).empty();
           $(pane).load(url, function() {
             $(pane).slideDown('fast').addClass(options.active_class);

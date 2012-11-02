@@ -116,78 +116,96 @@
       </section>
       <section id="styling">
         <h2>Styling</h2>
-      </section>
-      <section id="sliding_doors">
-        <h2>Autotabs with sliding doors</h2>
-        <p>jquery.autotabs is ready for sliding doors out of the box. There is no need for any special javascript configuration. Simply add your own sprite and your stylesheet.</p>
-        <section class="tabs">
-          <section id="sliding1">
-          </section>
-          <section id="sliding2">
-            <h3>Tab 2</h3>
-          </section>
-          <section id="sliding3">
-            <h2>Tab 3</h2>
-          </section>
-          <section id="sliding4">
-            <div>Tab 4</div>
-          </section>
-        </section>
-        <section class="docs">
-          <pre class="brush: css">
-
-      #sliding_doors ul.autotabs li.autotab a {
-        background: transparent url("images/btn_blue_sprite.gif") no-repeat right -140px;
-        border: none;
-        padding: 0 20px 0 0;
-      }
-
-      #sliding_doors ul.autotabs li.autotab a span {
-        background: transparent url("images/btn_blue_sprite.gif") no-repeat left top;
-        padding: 5px 0 4px 20px;
-        display: block;
-        color: #fff;
-      }
-
-      #sliding_doors ul.autotabs li.autotab.current a ,
-      #sliding_doors ul.autotabs li.autotab:hover a {
-        background-position: right -210px;
-      }
-
-      #sliding_doors ul.autotabs li.autotab.current a span,
-      #sliding_doors ul.autotabs li.autotab:hover a span {
-        background-position: left -70px;
-      }
-          </pre>
-        </section>
-      </section>
-      <section id="vertical">
-        <h2>Vertical autotabs</h2>
-        <section class="tabs">
-          <section id="tab5">
-            <h3>Tab 5</h3>
-          </section>
-          <section id="tab6">
-            <h3>Tab 6</h3>
-          </section>
-          <section id="tab7">
-            <h3>Tab 7</h3>
-          </section>
-          <section id="tab8">
-            <h3>Tab 8</h3>
-          </section>
-        </section>
-        <section class="docs">
-          <p>Include the built-in stylesheet for vertical tabs. You can of course use your own custom stylesheet to style the tabs in any way you want.</p>
+        <div id="styling_tabs"></div>
+        <section id="styles" class="styling">
+          <h3>Custom styling</h3>
+          <p>jquery.autotabs creates the following markup and prepends it to the element on which the plugin is applied.</p>
           <pre class="brush: html">
-            <link rel="stylesheet" type="text/css" href="/css/jquery.autotabs.vertical.css" />
+            &lt;ul class="autotabs"&gt;
+              <li classs="autotab current" id="_tab__pane1">
+                <a href="#tab_pane1"><span>Tab 1 label</span></a>
+              </li>
+              <li classs="autotab" id="__tab_pane2">
+                <a href="#tab_pane2"><span>Tab 1 label</span></a>
+              </li>
+            &lt;/ul&gt;
           </pre>
-          <p>Set the <code>vertical</code> option to <code>true</code>.</p>
-          <pre class="brush: js">
-            $('.tabs').autotabs({
-              vertical: true
-            });
-          </pre>
+          <p>The built-in styles are minimal and can easily be customized in your own stylesheet.</p>
+          <p>Note that the <code>autotabs</code> and <code>autotab</code> CSS classes are customizable via the <code>tabs_class</code> and <code>tab_class</code> options respectively.</p>
+          <p>The generated ids on each tab <code>li</code> element is also customizable via the <code>tab_id</code> option.</p>
+        </section>
+        <section id="sliding_doors" class="styling">
+          <h2>Sliding doors</h2>
+          <p>jquery.autotabs is ready for sliding doors out of the box. There is no need for any special javascript configuration. Simply add your own sprite and your stylesheet.</p>
+          <section class="tabs">
+            <section id="sliding1">
+              <h3>Tab 1</h3>
+            </section>
+            <section id="sliding2">
+              <h3>Tab 2</h3>
+            </section>
+            <section id="sliding3">
+              <h2>Tab 3</h2>
+            </section>
+            <section id="sliding4">
+              <div>Tab 4</div>
+            </section>
+          </section>
+          <section class="docs">
+            <pre class="brush: css">
+              #sliding_doors ul.autotabs li.autotab a {
+                background: transparent url("images/btn_blue_sprite.gif") no-repeat right -140px;
+                border: none;
+                padding: 0 20px 0 0;
+              }
+
+              #sliding_doors ul.autotabs li.autotab a span {
+                background: transparent url("images/btn_blue_sprite.gif") no-repeat left top;
+                padding: 5px 0 4px 20px;
+                display: block;
+                color: #fff;
+              }
+
+              #sliding_doors ul.autotabs li.autotab.current a ,
+              #sliding_doors ul.autotabs li.autotab:hover a {
+                background-position: right -210px;
+              }
+
+              #sliding_doors ul.autotabs li.autotab.current a span,
+              #sliding_doors ul.autotabs li.autotab:hover a span {
+                background-position: left -70px;
+              }
+            </pre>
+          </section>
+        </section>
+        <section id="vertical" class="styling">
+          <h2>Vertical autotabs</h2>
+          <section class="tabs">
+            <section id="tab5">
+              <h3>Tab 5</h3>
+            </section>
+            <section id="tab6">
+              <h3>Tab 6</h3>
+            </section>
+            <section id="tab7">
+              <h3>Tab 7</h3>
+            </section>
+            <section id="tab8">
+              <h3>Tab 8</h3>
+            </section>
+          </section>
+          <section class="docs">
+            <p>Include the built-in stylesheet for vertical tabs. You can of course use your own custom stylesheet to style the tabs in any way you want.</p>
+            <pre class="brush: html">
+              <link rel="stylesheet" type="text/css" href="/css/jquery.autotabs.vertical.css" />
+            </pre>
+            <p>Set the <code>vertical</code> option to <code>true</code>.</p>
+            <pre class="brush: js">
+              $('.tabs').autotabs({
+                vertical: true
+              });
+            </pre>
+          </section>
         </section>
       </section>
       <section id="ajax">
@@ -262,13 +280,21 @@
 
     </section>
     <script src="/js/jquery-1.8.2.min.js"></script>
-    <script src="/js/jquery.autotabs.min.js"></script>
+    <script src="/js/jquery.autotabs.js"></script>
     <script>
       $('#docs').autotabs({
         success: {
           usage: function() { $('.tabs', this).autotabs(); },
-          sliding_doors: function() { $('.tabs', this).autotabs(); },
-          vertical: function() { $('.tabs', this).autotabs({ vertical: true } ); },
+          styling: function() {
+            $(this).autotabs({
+              tabs_selector: '#styling_tabs',
+              tab_pane_selector: '.styling',
+              success: {
+                sliding_doors: function() { $('.tabs', this).autotabs(); },
+                vertical: function() { $('.tabs', this).autotabs({ vertical: true } ); },
+              }
+            });
+          },
           ajax: function() { $('.tabs', this).autotabs({ force_refresh: true }); },
           callbacks: function() {
             $('.tabs', this).autotabs({

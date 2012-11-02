@@ -74,7 +74,7 @@
         <pre class="brush: html">
           <link rel="stylesheet" type="text/css" href="/css/jquery.autotabs.css" />
           <script src="/js/jquery-1.8.2.min.js"></script>
-          <script src="/js/jquery.autotabs.js"></script>
+          <script src="/js/jquery.autotabs.min.js"></script>
         </pre>
       </section>
       <section id="download">
@@ -280,13 +280,20 @@
 
     </section>
     <script src="/js/jquery-1.8.2.min.js"></script>
-    <script src="/js/jquery.autotabs.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/jquery.autotabs.min.js"></script>
     <script>
       $('#docs').autotabs({
+        cookie_name: 'docs',
         success: {
-          usage: function() { $('.tabs', this).autotabs(); },
+          usage: function() {
+            $('.tabs', this).autotabs({
+              cookie_name: 'usage'
+            });
+          },
           styling: function() {
             $(this).autotabs({
+              cookie_name: 'styling',
               tabs_selector: '#styling_tabs',
               tab_pane_selector: '.styling',
               success: {
@@ -295,9 +302,15 @@
               }
             });
           },
-          ajax: function() { $('.tabs', this).autotabs({ force_refresh: true }); },
+          ajax: function() {
+            $('.tabs', this).autotabs({
+              cookie_name: 'ajax',
+              force_refresh: true
+            });
+          },
           callbacks: function() {
             $('.tabs', this).autotabs({
+              cookie_name: 'callbacks',
               success: {
                 callbacks_1: function() { alert('Id of first tab pane element: ' + $(this).attr('id')); },
                 callbacks_2: function() { alert('Id of second tab pane element: ' + $(this).attr('id')); }

@@ -18,11 +18,12 @@
 
           var ul = '<ul class="' + options.tabs_class  + (options.vertical ? ' vertical' : '') + '">';
 
+          var children = $this.children(options.tab_pane_selector);
+
           active_tab_index = (options.active_tab == null ?
                                ($.cookie ? $.cookie(options.cookie_name) : 0) :
                                options.active_tab) || 0;
-
-          var children = $this.children(options.tab_pane_selector);
+          active_tab_index = Math.min(children.length - 1, active_tab_index);
 
           switch (children.length) {
             case 0 :

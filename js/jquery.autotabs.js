@@ -102,7 +102,7 @@
                       ($(options.tab_label_selector, $(element)).length ?
                         $(options.tab_label_selector, $(element)).get(0).innerHTML :
                         options.tab_label && $.isFunction(options.tab_label) ? options.tab_label(index, element) : 'Tab ' + (index + 1));
-        var link = '<a href="' + ($(element).attr('rel') || '#' + element.id) + '" rel="' + element.id + '">' + label + '</a>';
+        var link = '<a href="' + ($(element).attr('rel') || '#' + element.id) + '" rel="' + element.id + '"><span>' + label + '</span></a>';
         return '<li class="' + cls + '" id="' + id + '">' + link + '</li>';
       },
 

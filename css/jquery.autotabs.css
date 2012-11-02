@@ -12,14 +12,6 @@ ul.autotabs li.autotab {
 	padding: 0;
 	margin: 0;
 	line-height: 150%;
-  border: 1px solid #666;
-  border-bottom: 0px;
-  -webkit-border-radius: 4px 4px 0 0;
-  -moz-border-radius: 4px 4px 0 0;
-  border-radius: 4px 4px 0 0;
-  background-color: #efefef;
-  height: 18px;
-  padding: 5px 15px 5px 15px;
   margin-right: 1px;
 }
 
@@ -28,9 +20,18 @@ ul.autotabs li.autotab a {
   text-decoration: none;
   color: #777;
   width: 100%;
+  margin: 0;
+  padding: 5px 15px 5px 15px;
+  box-sizing: border-box;
+  border: 1px solid #666;
+  border-bottom: 0px;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+  background-color: #efefef;
 }
 
-ul.autotabs li.autotab.current {
+ul.autotabs li.autotab.current a {
   background-color: #fff;
   color: #000;
   cursor: default;

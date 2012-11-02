@@ -7,13 +7,17 @@ ul.autotabs.vertical {
   border-right: 1px solid #ddd;
 }
 
-ul.autotabs.vertical li {
+ul.autotabs.vertical li.autotab {
   display: block;
+  float: none;
+}
+
+ul.autotabs.vertical li.autotab a {
   border: 1px dotted #ddd;
   border-width: 0 0 1px 0;
   background-color: #fff;
-  float: none;
 }
+
 
 ul.autotabs.vertical li.current {
   text-align: right;

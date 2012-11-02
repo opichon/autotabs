@@ -17,6 +17,7 @@
           var $this = $(this);
 
           var ul = '<ul class="' + options.tabs_class  + (options.vertical ? ' vertical' : '') + '">';
+
           active_tab_index = (options.active_tab == null ?
                                ($.cookie ? $.cookie(options.cookie_name) : 0) :
                                options.active_tab) || 0;
@@ -49,18 +50,23 @@
 
           var tabs = (options.tabs_selector != '') ? $(options.tabs_selector) : $this;
           if (!tabs) { tabs = $this; }
+          $('.' + options.tabs_class, tabs).remove();
           tabs.prepend(ul);
 
           $('ul.' + options.tabs_class + ' li > a', tabs).click(function() {
             if (processing) { return false; }
-            processing = true;
-            helpers.showLoadingIcon(options);
 
             var link = $(this);
 
+            if ($(this).parent().hasClass(options.active_class) && !options.force_refresh) { return false; }
+
+            processing = true;
+            helpers.showLoadingIcon(options);
+
+
             link.parent().addClass(options.active_class).siblings('li').removeClass(options.active_class);
             $this.children(options.tab_pane_selector).each(function() {
-              $(this).hide().removeClass(options.active_class);
+              $(this).slideUp('fast').removeClass(options.active_class);
             });
 
             $this.children(options.tab_pane_selector).each(function(index, e) {
@@ -79,6 +85,7 @@
             return false;
           });
 
+          helpers.showLoadingIcon(options);
           $this.children(options.tab_pane_selector).each(function(index, elt) {
             if (index == active_tab_index) { helpers.load(elt); }
             else { $(elt).slideUp('fast').removeClass(options.active_class); }
@@ -103,20 +110,25 @@
         var success = helpers.getSuccess(pane.id);
         if ((url = $(pane).attr('rel')) && ($.trim($(pane).html()) == '' || options.force_refresh)) {
           $(pane).empty();
-          $(pane).load(url, function() {
-            $(pane).show().addClass(options.active_class);
-            if (success && $.isFunction(success)) {
-              success.call(pane);
-            };
-            processing = false;
-            helpers.hideLoadingIcon(options);
+          $.ajax({
+            url: url,
+            error: function() { location.reload(true); },
+            success: function(data) {
+              $(pane).html(data);
+              $(pane).slideDown('fast').addClass(options.active_class);
+              processing = false;
+              helpers.hideLoadingIcon(options);
+              if (success && $.isFunction(success)) {
+                success.call(pane);
+              };
+            }
           });
         }
         else {
           $(pane).slideDown('fast').addClass(options.active_class);
-          if (success && $.isFunction(success)) { success.call(pane); }
           processing = false;
           helpers.hideLoadingIcon(options);
+          if (success && $.isFunction(success)) { success.call(pane); }
         }
       },
 

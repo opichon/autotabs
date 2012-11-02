@@ -27,6 +27,7 @@ ul.autotabs li.autotab a {
 	display: block;
   text-decoration: none;
   color: #777;
+  width: 100%;
 }
 
 ul.autotabs li.autotab.current {

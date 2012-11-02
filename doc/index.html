@@ -18,35 +18,49 @@
         color: #555;
       }
 
-      .content { min-height: 150px; }
+      #loading {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
 
-      .content > section { display: none; }
+      #loading img {
+        display: block;
+        border: none;
+        margin: 300px auto;
+      }
+
+      .tabs { min-height: 150px; }
+
+      .tabs > section { display: none; }
 
       .docs {
         margin-top: 1em;
         border-top: 1px solid #ddd;
       }
 
-      .sliding_doors ul.autotabs li.autotab {
+      #sliding_doors ul.autotabs li.autotab {
         background: transparent url("images/btn_blue_sprite.gif") no-repeat right -140px;
         border: none;
         padding: 0 20px 14px 0;
       }
 
-      .sliding_doors ul.autotabs li.autotab a {
+      #sliding_doors ul.autotabs li.autotab a {
         background: transparent url("images/btn_blue_sprite.gif") no-repeat left top;
         padding: 5px 0 3px 20px;
         display: block;
         color: #fff;
       }
 
-      .sliding_doors ul.autotabs li.autotab.current,
-      .sliding_doors ul.autotabs li.autotab:hover {
+      #sliding_doors ul.autotabs li.autotab.current,
+      #sliding_doors ul.autotabs li.autotab:hover {
         background-position: right -210px;
       }
 
-      .sliding_doors ul.autotabs li.autotab.current a,
-      .sliding_doors ul.autotabs li.autotab:hover a {
+      #sliding_doors ul.autotabs li.autotab.current a,
+      #sliding_doors ul.autotabs li.autotab:hover a {
         background-position: left -70px;
       }
     </style>
@@ -54,8 +68,8 @@
   <body>
     <h1>jquery.autotabs</h1>
     <section id="docs">
-      <section>
-        <h3>Installation</h3>
+      <section id="installation">
+        <h2>Installation</h2>
         <p>Include the autotabs assets</p>
         <pre class="brush: html">
           <link rel="stylesheet" type="text/css" href="/css/jquery.autotabs.css" />
@@ -63,33 +77,22 @@
           <script src="/js/jquery.autotabs.js"></script>
         </pre>
       </section>
-      <section>
-        <h3>Options</h3>
-      </section>
-      <section>
-        <h3>CSS classes</h3>
-      </section>
-      <section>
-        <h3>Download</h3>
+      <section id="download">
+        <h2>Download</h2>
         <a href="https://github.com/opichon/autotabs">https://github.com/opichon/autotabs</a>
       </section>
-      <section>
-        <h3>Basic usage</h3>
-        <div id="tabs">
+      <section id="usage">
+        <h2>Basic usage</h2>
+        <div class="tabs">
           <div>
             <h3>Tab 1</h3>
-            The title of this tab is read from the tab pane element's first <code>h3</code> child element. This is a default behavior that can be customized.
+            The title of this tab is read from the tab pane element's first <code>h1</code>, <code>h2</code> or <code>h3</code> child element. This is a default behavior that can be customized.
           </div>
           <div title="Tab 2">The title of this tab is read from the tab pane element's <code>title</code> attribute.</div>
           <div>
             Because this tab pane element has neither a <code>title</code> attribute nor an <code>h3</code> child element, the title of this tab is generated.
           </div>
         </div>
-        <script>
-          $(document).ready(function() {
-            $('#tabs').autotabs();
-          });
-        </script>
         <section class="docs">
           <p>Create the markup for your tab panes. All tab panes for a given set of tabs should be the children of the same parent element.</p>
           <pre class="brush: html">
@@ -108,19 +111,25 @@
           </pre>
         </section>
       </section>
+      <section id="option">
+        <h2>Options</h2>
+      </section>
+      <section id="styling">
+        <h2>Styling</h2>
+      </section>
       <section id="sliding_doors">
         <h2>Autotabs with sliding doors</h2>
         <p>jquery.autotabs is ready for sliding doors out of the box. There is no need for any javascript configuration. Simply add your own sprite and your stylesheet.</p>
-        <section class="content sliding_doors">
-          <section>
+        <section class="tabs">
+          <section id="sliding1">
           </section>
-          <section id="tab2">
+          <section id="sliding2">
             <h3>Tab 2</h3>
           </section>
-          <section id="tab3">
+          <section id="sliding3">
             <h2>Tab 3</h2>
           </section>
-          <section id="tab4">
+          <section id="sliding4">
             <div>Tab 4</div>
           </section>
         </section>
@@ -151,9 +160,9 @@
           </pre>
         </section>
       </section>
-      <section id="vertical_tabs">
+      <section id="vertical">
         <h2>Vertical autotabs</h2>
-        <section class="content">
+        <section class="tabs">
           <section id="tab5">
             <h3>Tab 5</h3>
           </section>
@@ -168,27 +177,107 @@
           </section>
         </section>
         <section class="docs">
-          <p>Include the relevant stylesheet. You can of course use your own custom stylesheet to style the tabs in any way you want.</p>
+          <p>Include the built-in stylesheet for vertical tabs. You can of course use your own custom stylesheet to style the tabs in any way you want.</p>
           <pre class="brush: html">
             <link rel="stylesheet" type="text/css" href="/css/jquery.autotabs.vertical.css" />
           </pre>
           <p>Set the <code>vertical</code> option to <code>true</code>.</p>
           <pre class="brush: js">
-            $('#tabs').autotabs({
+            $('.tabs').autotabs({
               vertical: true
             });
           </pre>
         </section>
       </section>
+      <section id="ajax">
+        <h2>Dynamic loading of tab panes via ajax</h2>
+        <section class="tabs">
+          <div rel="tab1.html" title="Tab 1" id="ajax1"></div>
+          <div rel="tab2.html" id="ajax2"></div>
+          <div id="ajax3">Static content</div>
+        </section>
+        <section class="docs">
+          <p>The content of tab panes can be loaded dynamically via ajax. To enable this, set the tab pane element's <code>rel</code> attribute to the url of the remote page.</p>
+          <p>Dynamically-loaded tab panes can be mixed with statically loaded tab panes.
+          <p>To force the tabs to be reloaded via ajax whenever the tab is selected, set the <code>force-refresh</code> option to <code>true</code>. Note that your browser may use the cached response from earlier requests.</p>
+        </section>
+        <pre class="brush: html">
+          &lt;section class="tabs"&gt;
+            <div rel="tab1.html" title="Tab 1" id="ajax1"></div>
+            <div rel="tab2.html" id="ajax2"></div>
+            <div id="ajax3">Static content</div>
+          &lt;/section&gt;
+        </pre>
+        <pre class="brush: js">
+          $(document).ready(function() {
+            $('.tabs').autotabs({
+              force_refresh: true
+            });
+          });
+        </pre>
+      </section>
+      <section id="callbacks">
+        <h2>Callbacks</h2>
+        <section class="tabs">
+          <div id="callbacks_1">Tab 1</div>
+          <div id="callbacks_2">Tab 2</div>
+          <div id="callbacks_3">Tab 3 - no callback defined</div>
+        </section>
+        <section class="docs">
+          <p>The plugin provides the ability to invoke a custom callback on each tab when the tab is selected via the <code>success</code>.</p>
+          <p>The <code>success</code> option is either:</p>
+          <ul>
+            <li>A function. In this case this function is invoked when any tab is selected. The function is invoked with <code>this</code> referring to the selected tab pane element.</li>
+            <li>An associative array where:
+              <ul>
+                <li>The key is the id of the tab pane element</li>
+                <li>The value is the callback function invoked when the tab is selected. The function is invoked with <code>this</code> referring to the selected tab pane element.</li>
+              </ul>
+              If no value is defined for a tab pane element, then no callback is invoked when this tap pane is selected.
+            </li>
+          </ul>
+          <pre class="brush: html">
+            &lt;section class="tabs"&gt;
+              <div id="callbacks_1">Tab 1</div>
+              <div id="callbacks_2">Tab 2</div>
+              <div id="callbacks_3">Tab 3</div>
+            &lt;/section&gt;
+          </pre>
+          <pre class="brush: js">
+            $('.tabs').autotabs({
+              success: function() { alert($(this).attr('id')); }
+            });
+          </pre>
+          <pre class="brush: js">
+            $('.tabs').autotabs({
+              success: {
+                callbacks_1: function() { alert('Id of first tab pane element: ' + $(this).attr('id')); },
+                callbacks_2: function() { alert('Id of second tab pane element: ' + $(this).attr('id')); }
+              }
+            });
+          </pre>
+        </section>
+      </section>
+
     </section>
     <script src="/js/jquery-1.8.2.min.js"></script>
     <script src="/js/jquery.autotabs.js"></script>
     <script>
-      $('#docs').autotabs({});
-//      $('#tabs').autotabs({});
-      $('#sliding_doors .content').autotabs({});
-      $('#vertical_tabs .content').autotabs({
-        vertical: true
+      $('#docs').autotabs({
+        success: {
+          usage: function() { $('.tabs', this).autotabs(); },
+          sliding_doors: function() { $('.tabs', this).autotabs(); },
+          vertical: function() { $('.tabs', this).autotabs({ vertical: true } ); },
+          ajax: function() { $('.tabs', this).autotabs({ force_refresh: true }); },
+          callbacks: function() {
+            $('.tabs', this).autotabs({
+              success: {
+                callbacks_1: function() { alert('Id of first tab pane element: ' + $(this).attr('id')); },
+                callbacks_2: function() { alert('Id of second tab pane element: ' + $(this).attr('id')); }
+              }
+            });
+          }
+        }
       });
     </script>
     <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
@@ -203,5 +292,8 @@
       SyntaxHighlighter.all({
       });
     </script>
+    <div id="loading">
+      <img src="images/loading.gif" />
+    </div>
   </body>
 </html>

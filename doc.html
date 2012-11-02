@@ -3,44 +3,98 @@
   <head>
     <link rel="stylesheet" type="text/css" href="jquery.autotabs.css" />
     <link rel="stylesheet" type="text/css" href="jquery.autotabs.vertical.css" />
+    <style>
+      h3 { margin-top: 0; }
+      .content {
+        min-height: 150px;
+        border-bottom: 1px dotted #ddd;
+        margin: 5px 0;
+        padding: 5px 0;
+      }
+      .content > section { display: none; }
+
+      .sliding_doors ul.autotabs li.autotab {
+        background: transparent url("btn_blue_sprite.gif") no-repeat right -140px;
+        border: none;
+        padding: 0 20px 14px 0;
+      }
+
+      .sliding_doors ul.autotabs li.autotab a {
+        background: transparent url("btn_blue_sprite.gif") no-repeat left top;
+        padding: 5px 0 3px 20px;
+        display: block;
+        color: #fff;
+      }
+
+      .sliding_doors ul.autotabs li.autotab.current,
+      .sliding_doors ul.autotabs li.autotab:hover {
+        background-position: right -210px;
+      }
+
+      .sliding_doors ul.autotabs li.autotab.current a,
+      .sliding_doors ul.autotabs li.autotab:hover a {
+        background-position: left -70px;
+      }
+    </style>
   </head>
   <body>
+    <h1>Autotabs</h1>
     <section id="tabs">
-      <section>
-      </section>
-      <section id="tab2">
-        <h3>Tab 2</h3>
-      </section>
-      <section id="tab3">
-        <h2>Tab 3</h2>
-      </section>
-      <section id="tab4">
-        <div>Tab 4</div>
+      <h2>Autotabs</h2>
+      <section class="content">
+        <section>
+        </section>
+        <section id="tab2">
+          <h3>Tab 2</h3>
+        </section>
+        <section id="tab3">
+          <h2>Tab 3</h2>
+        </section>
+        <section id="tab4">
+          <div>Tab 4</div>
+        </section>
       </section>
     </section>
-
+    <section id="tabs">
+      <h2>Autotabs with sliding doors</h2>
+      <section class="content sliding_doors">
+        <section>
+        </section>
+        <section id="tab2">
+          <h3>Tab 2</h3>
+        </section>
+        <section id="tab3">
+          <h2>Tab 3</h2>
+        </section>
+        <section id="tab4">
+          <div>Tab 4</div>
+        </section>
+      </section>
+    </section>
     <section id="vertical_tabs">
-      <section id="tab5">
-        <h3>Tab 5</h3>
-      </section>
-      <section id="tab6">
-        <h3>Tab 6</h3>
-      </section>
-      <section id="tab7">
-        <h3>Tab 7</h3>
-      </section>
-      <section id="tab8">
-        <h3>Tab 8</h3>
+      <h2>Vertical autotabs</h2>
+      <section class="content">
+        <section id="tab5">
+          <h3>Tab 5</h3>
+        </section>
+        <section id="tab6">
+          <h3>Tab 6</h3>
+        </section>
+        <section id="tab7">
+          <h3>Tab 7</h3>
+        </section>
+        <section id="tab8">
+          <h3>Tab 8</h3>
+        </section>
       </section>
     </section>
-
     <script src="jquery-1.8.1.min.js"></script>
     <script src="jquery.autotabs.js"></script>
     <script>
-      $('#tabs').autotabs({
+      $('#tabs .content').autotabs({
 
       });
-      $('#vertical_tabs').autotabs({
+      $('#vertical_tabs .content').autotabs({
         vertical: true
       });
     </script>

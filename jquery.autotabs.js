@@ -60,7 +60,7 @@
 
             link.parent().addClass(options.active_class).siblings('li').removeClass(options.active_class);
             $this.children(options.tab_pane_selector).each(function() {
-              $(this).slideUp('fast').removeClass(options.active_class);
+              $(this).hide().removeClass(options.active_class);
             });
 
             $this.children(options.tab_pane_selector).each(function(index, e) {
@@ -104,7 +104,7 @@
         if ((url = $(pane).attr('rel')) && ($.trim($(pane).html()) == '' || options.force_refresh)) {
           $(pane).empty();
           $(pane).load(url, function() {
-            $(pane).slideDown('fast').addClass(options.active_class);
+            $(pane).show().addClass(options.active_class);
             if (success && $.isFunction(success)) {
               success.call(pane);
             };

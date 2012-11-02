@@ -154,7 +154,7 @@
 
   $.fn.autotabs.defaults = {
       tab_pane_selector: "div, section, .tab-pane",
-      tab_label_selector: "h3, :first-child",
+      tab_label_selector: "h1, h2, h3, h4",
       tabs_class: "autotabs",
       tab_class: "autotab",
       tabs_selector: "",

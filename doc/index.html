@@ -1,26 +1,40 @@
 <!doctype html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="jquery.autotabs.css" />
-    <link rel="stylesheet" type="text/css" href="jquery.autotabs.vertical.css" />
+    <link rel="stylesheet" type="text/css" href="/css/jquery.autotabs.css" />
+    <link rel="stylesheet" type="text/css" href="/css/jquery.autotabs.vertical.css" />
+    <link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+    <link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet" type="text/css" />
     <style>
-      h3 { margin-top: 0; }
-      .content {
-        min-height: 150px;
-        border-bottom: 1px dotted #ddd;
-        margin: 5px 0;
-        padding: 5px 0;
+      * { font-family: Verdana, Helvetica, Arial, sans-serif; }
+
+      pre {
+        clear: both;
+        margin-top: 1em;
       }
+
+      code {
+        font-family: monospace;
+        color: #555;
+      }
+
+      .content { min-height: 150px; }
+
       .content > section { display: none; }
 
+      .docs {
+        margin-top: 1em;
+        border-top: 1px solid #ddd;
+      }
+
       .sliding_doors ul.autotabs li.autotab {
-        background: transparent url("btn_blue_sprite.gif") no-repeat right -140px;
+        background: transparent url("images/btn_blue_sprite.gif") no-repeat right -140px;
         border: none;
         padding: 0 20px 14px 0;
       }
 
       .sliding_doors ul.autotabs li.autotab a {
-        background: transparent url("btn_blue_sprite.gif") no-repeat left top;
+        background: transparent url("images/btn_blue_sprite.gif") no-repeat left top;
         padding: 5px 0 3px 20px;
         display: block;
         color: #fff;
@@ -38,64 +52,155 @@
     </style>
   </head>
   <body>
-    <h1>Autotabs</h1>
-    <section id="tabs">
-      <h2>Autotabs</h2>
-      <section class="content">
-        <section>
-        </section>
-        <section id="tab2">
-          <h3>Tab 2</h3>
-        </section>
-        <section id="tab3">
-          <h2>Tab 3</h2>
-        </section>
-        <section id="tab4">
-          <div>Tab 4</div>
+    <h1>jquery.autotabs</h1>
+    <section id="docs">
+      <section>
+        <h3>Installation</h3>
+        <p>Include the autotabs assets</p>
+        <pre class="brush: html">
+          <link rel="stylesheet" type="text/css" href="/css/jquery.autotabs.css" />
+          <script src="/js/jquery-1.8.2.min.js"></script>
+          <script src="/js/jquery.autotabs.js"></script>
+        </pre>
+      </section>
+      <section>
+        <h3>Options</h3>
+      </section>
+      <section>
+        <h3>CSS classes</h3>
+      </section>
+      <section>
+        <h3>Download</h3>
+        <a href="https://github.com/opichon/autotabs">https://github.com/opichon/autotabs</a>
+      </section>
+      <section>
+        <h3>Basic usage</h3>
+        <div id="tabs">
+          <div>
+            <h3>Tab 1</h3>
+            The title of this tab is read from the tab pane element's first <code>h3</code> child element. This is a default behavior that can be customized.
+          </div>
+          <div title="Tab 2">The title of this tab is read from the tab pane element's <code>title</code> attribute.</div>
+          <div>
+            Because this tab pane element has neither a <code>title</code> attribute nor an <code>h3</code> child element, the title of this tab is generated.
+          </div>
+        </div>
+        <script>
+          $(document).ready(function() {
+            $('#tabs').autotabs();
+          });
+        </script>
+        <section class="docs">
+          <p>Create the markup for your tab panes. All tab panes for a given set of tabs should be the children of the same parent element.</p>
+          <pre class="brush: html">
+            <div id="tabs">
+              <div>
+                <h3>Tab 1</h3>
+                Content of tab 1
+              </div>
+              <div title="Tab 2">Content of tab 2</div>
+              <div>Content of tab 3</div>
+            </div>
+          </pre>
+          <p>Apply autotabs to your element.</p>
+          <pre class="brush: js">
+            $('#tabs').autotabs();
+          </pre>
         </section>
       </section>
-    </section>
-    <section id="tabs">
-      <h2>Autotabs with sliding doors</h2>
-      <section class="content sliding_doors">
-        <section>
+      <section id="sliding_doors">
+        <h2>Autotabs with sliding doors</h2>
+        <p>jquery.autotabs is ready for sliding doors out of the box. There is no need for any javascript configuration. Simply add your own sprite and your stylesheet.</p>
+        <section class="content sliding_doors">
+          <section>
+          </section>
+          <section id="tab2">
+            <h3>Tab 2</h3>
+          </section>
+          <section id="tab3">
+            <h2>Tab 3</h2>
+          </section>
+          <section id="tab4">
+            <div>Tab 4</div>
+          </section>
         </section>
-        <section id="tab2">
-          <h3>Tab 2</h3>
-        </section>
-        <section id="tab3">
-          <h2>Tab 3</h2>
-        </section>
-        <section id="tab4">
-          <div>Tab 4</div>
-        </section>
-      </section>
-    </section>
-    <section id="vertical_tabs">
-      <h2>Vertical autotabs</h2>
-      <section class="content">
-        <section id="tab5">
-          <h3>Tab 5</h3>
-        </section>
-        <section id="tab6">
-          <h3>Tab 6</h3>
-        </section>
-        <section id="tab7">
-          <h3>Tab 7</h3>
-        </section>
-        <section id="tab8">
-          <h3>Tab 8</h3>
-        </section>
-      </section>
-    </section>
-    <script src="jquery-1.8.1.min.js"></script>
-    <script src="jquery.autotabs.js"></script>
-    <script>
-      $('#tabs .content').autotabs({
+        <section class="docs">
+          <pre class="brush: css">
+          .sliding_doors ul.autotabs li.autotab {
+            background: transparent url("images/btn_blue_sprite.gif") no-repeat right -140px;
+            border: none;
+            padding: 0 20px 14px 0;
+          }
 
-      });
+          .sliding_doors ul.autotabs li.autotab a {
+            background: transparent url("images/btn_blue_sprite.gif") no-repeat left top;
+            padding: 5px 0 3px 20px;
+            display: block;
+            color: #fff;
+          }
+
+          .sliding_doors ul.autotabs li.autotab.current,
+          .sliding_doors ul.autotabs li.autotab:hover {
+            background-position: right -210px;
+          }
+
+          .sliding_doors ul.autotabs li.autotab.current a,
+          .sliding_doors ul.autotabs li.autotab:hover a {
+            background-position: left -70px;
+          }
+          </pre>
+        </section>
+      </section>
+      <section id="vertical_tabs">
+        <h2>Vertical autotabs</h2>
+        <section class="content">
+          <section id="tab5">
+            <h3>Tab 5</h3>
+          </section>
+          <section id="tab6">
+            <h3>Tab 6</h3>
+          </section>
+          <section id="tab7">
+            <h3>Tab 7</h3>
+          </section>
+          <section id="tab8">
+            <h3>Tab 8</h3>
+          </section>
+        </section>
+        <section class="docs">
+          <p>Include the relevant stylesheet. You can of course use your own custom stylesheet to style the tabs in any way you want.</p>
+          <pre class="brush: html">
+            <link rel="stylesheet" type="text/css" href="/css/jquery.autotabs.vertical.css" />
+          </pre>
+          <p>Set the <code>vertical</code> option to <code>true</code>.</p>
+          <pre class="brush: js">
+            $('#tabs').autotabs({
+              vertical: true
+            });
+          </pre>
+        </section>
+      </section>
+    </section>
+    <script src="/js/jquery-1.8.2.min.js"></script>
+    <script src="/js/jquery.autotabs.js"></script>
+    <script>
+      $('#docs').autotabs({});
+//      $('#tabs').autotabs({});
+      $('#sliding_doors .content').autotabs({});
       $('#vertical_tabs .content').autotabs({
         vertical: true
+      });
+    </script>
+    <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
+    <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shAutoloader.js" type="text/javascript"></script>
+    <script>
+      SyntaxHighlighter.autoloader(
+        'js jscript javascript  http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js',
+        'css  http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCss.js',
+        'html  http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js'
+      );
+
+      SyntaxHighlighter.all({
       });
     </script>
   </body>

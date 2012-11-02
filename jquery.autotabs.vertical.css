@@ -1,0 +1,20 @@
+ul.autotabs.vertical {
+  width: 12em;
+  float: left;
+  margin: 0 1em 0 0;
+  padding: 0;
+  border-right: 1px solid #ddd;
+}
+
+ul.autotabs.vertical li {
+  display: block;
+  border: 1px dotted #ddd;
+  border-width: 0 0 1px 0;
+  background-color: #fff;
+  float: none;
+}
+
+ul.autotabs.vertical li.current {
+  text-align: right;
+  font-weight: bold;
+}

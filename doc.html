@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="jquery.autotabs.css" />
+    <link rel="stylesheet" type="text/css" href="jquery.autotabs.vertical.css" />
+  </head>
+  <body>
+    <section id="tabs">
+      <section>
+      </section>
+      <section id="tab2">
+        <h3>Tab 2</h3>
+      </section>
+      <section id="tab3">
+        <h2>Tab 3</h2>
+      </section>
+      <section id="tab4">
+        <div>Tab 4</div>
+      </section>
+    </section>
+
+    <section id="vertical_tabs">
+      <section id="tab5">
+        <h3>Tab 5</h3>
+      </section>
+      <section id="tab6">
+        <h3>Tab 6</h3>
+      </section>
+      <section id="tab7">
+        <h3>Tab 7</h3>
+      </section>
+      <section id="tab8">
+        <h3>Tab 8</h3>
+      </section>
+    </section>
+
+    <script src="jquery-1.8.1.min.js"></script>
+    <script src="jquery.autotabs.js"></script>
+    <script>
+      $('#tabs').autotabs({
+
+      });
+      $('#vertical_tabs').autotabs({
+        vertical: true
+      });
+    </script>
+  </body>
+</html>

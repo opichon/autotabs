@@ -1,6 +1,6 @@
 {
 	"name": "opichon/autotabs",
-	"type": "jQuery plugin",
+	"type": "jQuery-plugin",
 	"description": "JQuery plugin to generate tabs from page markup",
 	"keywords": ["autotabs", "tabs", "jquery"],
 	"homepage": "https://github.com/opichon/autotabs",

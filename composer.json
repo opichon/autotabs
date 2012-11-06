@@ -4,7 +4,7 @@
 	"description": "jQuery plugin to generate tabs from page markup",
 	"keywords": ["autotabs", "tabs", "jquery"],
 	"homepage": "https://github.com/opichon/autotabs",
-	"licence": "MIT",
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "Olivier Pichon",

@@ -98,7 +98,11 @@
     var helpers = {
       generate_tab: function(index, element) {
         var id = options.tab_id && $.isFunction(options.tab_id) ? options.tab_id(element.id) : element.id;
-        var cls = options.tab_class + (index == active_tab_index ? ' ' + options.active_class : '');
+        var cls = options.tab_class;
+        if ($(element).data('tab-class')) {
+	      cls += ' ' + ($(element).data('tab-class'));
+        }
+        cls += index == active_tab_index ? ' ' + options.active_class : '';
         var label = $(element).attr('title') ||
                       ($(options.tab_label_selector, $(element)).length ?
                         $(options.tab_label_selector, $(element)).get(0).innerHTML :

@@ -1,0 +1,28 @@
+{
+	"name": "autotabs",
+	"title": "jQuery autotabs plugin",
+	"version": "2.0.5",
+	"author": {
+		"name": "Olivier Pichon",
+		"email": "op@united-asian.com",
+		"url": "https://github.com/opichon"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://opensource.org/licenses/MIT"
+		}
+	],
+	"description": "Automatically generates navigable tabs based on your markup.",
+	"homepage": "https://github.com/opichon/autotabs",
+	"maintainers": [
+		{
+			"name": "Olivier Pichon",
+			"email": "op@united-asian.com",
+			"url": "https://github.com/opichon"
+		}
+	],
+	"dependencies": {
+		"jquery": "1.6.3"
+	}
+}

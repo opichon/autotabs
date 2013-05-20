@@ -5,7 +5,8 @@ ul.autotabs {
     margin: 0;
 }
 
-ul.autotabs li.autotab {
+/*csslint box-sizing: false*/
+li.autotab {
     list-style-type: none;
     display: inline-block;
     padding: 0;
@@ -15,7 +16,8 @@ ul.autotabs li.autotab {
     box-sizing: border-box;
 }
 
-ul.autotabs li.autotab a {
+/*csslint box-sizing: false*/
+li.autotab a {
     display: block;
     text-decoration: none;
     color: #777;
@@ -23,22 +25,21 @@ ul.autotabs li.autotab a {
     padding: 5px 10px;
     box-sizing: border-box;
     border: 1px solid #666;
-    border-bottom: 0px;
+    border-bottom: 0;
     -webkit-border-radius: 4px 4px 0 0;
     -moz-border-radius: 4px 4px 0 0;
     border-radius: 4px 4px 0 0;
     background-color: #efefef;
-    box-sizing: border-box;
     text-align: center;
 }
 
-ul.autotabs li.autotab.current a {
+li.current a {
     background-color: #fff;
     color: #000;
     cursor: default;
 }
 
-ul.autotabs li.autotab:hover {
+li.autotab:hover {
     background-color: #fff;
     color: #000;
 }
@@ -47,6 +48,6 @@ ul.autotabs li.autotab:hover {
     display: none;
 }
 
-.tab-pane.current {
+.current {
     display: block;
 }

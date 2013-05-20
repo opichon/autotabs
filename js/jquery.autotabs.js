@@ -17,9 +17,17 @@
 				return this.each(function() {
 					var $this = $( this) ;
 
-					var ul = '<ul class="' + options.tabs_class  + ( options.vertical ? ' vertical' : '' ) + '">';
-
 					var children = $this.children( options.tab_pane_selector );
+
+					if ( children.length === 0) {
+						return;
+					}
+					else if (children.length == 1 && !options.tab_orphans ) {
+						children.show();
+						return;
+					}
+
+					var ul = '<ul class="' + options.tabs_class  + ( options.vertical ? ' vertical' : '' ) + '">';
 
 					active_tab_index = ( options.active_tab === null ?
 						( $.cookie ? $.cookie( options.cookie_name ) : 0 ) :
@@ -27,29 +35,16 @@
 
 					active_tab_index = Math.min( children.length - 1, active_tab_index );
 
-					switch ( children.length ) {
-						case 0 :
-							return;
+					children.each(function( index, element ) {
+						if ( element.id === "" ) {
+							var id = options.tab_pane_id && $.isFunction( options.tab_pane_id ) ?
+								options.tab_pane_id( index, element) :
+								"___" + ( index + 1 );
+								$( element ).attr( "id", id );
+						}
 
-						case 1 :
-							if ( !options.tab_orphans ) {
-								children.show();
-								return;
-							}
-
-						default :
-							children.each(function( index, element ) {
-								if ( element.id === "" ) {
-									var id = options.tab_pane_id && $.isFunction( options.tab_pane_id ) ?
-										options.tab_pane_id( index, element) :
-										"___" + ( index + 1 );
-
-									$( element ).attr( "id", id );
-								}
-
-								ul += helpers.generate_tab( index, element );
-							});
-					}
+						ul += helpers.generate_tab( index, element );
+					});
 
 					ul += "</ul>";
 

@@ -1,26 +1,30 @@
 ul.autotabs.vertical {
-  width: 12em;
-  float: left;
-  margin: 0;
-  margin-right: 10px;
-  padding: 0;
-  border-right: 1px solid #ddd;
+    width: 12em;
+    float: left;
+    margin: 0;
+    margin-right: 10px;
+    padding: 0;
+    border-right: 1px solid #ddd;
 }
 
 ul.autotabs.vertical li.autotab {
-  display: block;
-  float: none;
+    display: block;
+    float: none;
 }
 
 ul.autotabs.vertical li.autotab a {
-  border: 1px dotted #ddd;
-  border-width: 0 0 1px 0;
-  background-color: #fff;
-  text-align: left;
+    border: 1px dotted #ddd;
+    border-width: 0 0 1px 0;
+    background-color: #fff;
+    text-align: left;
 }
 
 
 ul.autotabs.vertical li.current {
-  text-align: right;
-  font-weight: bold;
+    text-align: right;
+    font-weight: bold;
+}
+
+.tab-pane {
+    padding-left: 13em;
 }

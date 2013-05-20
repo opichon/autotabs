@@ -61,7 +61,7 @@
 
 					tabs.prepend( ul );
 
-					$( "ul." + options.tabs_class + " li > a", tabs ).click(function() {
+					$( "li > a", tabs.children().first() ).click(function() {
 						if ( processing ) {
 							return false;
 						}

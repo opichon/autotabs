@@ -1,6 +1,6 @@
 {
   "name": "autotabs",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "homepage": "https://github.com/opichon/autotabs",
   "authors": [
     "Olivier Pichon <op@united-asian.com>"
@@ -9,8 +9,6 @@
   "main": [
     "js/jquery.autotabs.js",
     "js/jquery.autotabs.min.js",
-    "js/jquery-1.9.1.min.js",
-    "js/jquery.cookie.js",
     "css/jquery.autotabs.css",
     "css/jquery.autotabs.vertical.css"
   ],

@@ -12,7 +12,7 @@
     "dist/css/jquery.autotabs.css",
     "dist/css/jquery.autotabs.vertical.css"
     "dist/js/jquery.js",
-    "dist/js/jquery.cookie.js",
+    "dist/js/jquery.cookie.js"
   ],
   "keywords": [
     "jquery",

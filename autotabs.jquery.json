@@ -1,6 +1,6 @@
 {
 	"name": "autotabs",
-	"version": "2.0.11",
+	"version": "2.0.15",
 	"title": "jQuery autotabs plugin",
 	"author": {
 		"name": "Olivier Pichon",
@@ -14,7 +14,7 @@
 		}
 	],
 	"dependencies": {
-		"jquery": "1.6.3"
+		"jquery": "1.6.4"
 	},
 	"description": "Automatically generates navigable tabs based on your markup.",
 	"keywords": [ "tabs" ],

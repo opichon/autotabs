@@ -1,4 +1,5 @@
-(function( $ ) {
+!( function( $ ) {
+	"use strict";
 	$.fn.autotabs = function( method ) {
 		var options,
 			active_tab_index,
@@ -22,12 +23,12 @@
 					if ( children.length === 0) {
 						return;
 					}
-					else if (children.length == 1 && !options.tab_orphans ) {
+					else if (children.length === 1 && !options.tab_orphans ) {
 						children.show();
 						return;
 					}
 
-					var ul = '<ul class="' + options.tabs_class  + ( options.vertical ? ' vertical' : '' ) + '">';
+					var ul = "<ul class='" + options.tabs_class  + ( options.vertical ? " vertical" : "" ) + "'>";
 
 					active_tab_index = ( options.active_tab === null ?
 						( $.cookie ? $.cookie( options.cookie_name ) : 0 ) :
@@ -40,7 +41,8 @@
 							var id = options.tab_pane_id && $.isFunction( options.tab_pane_id ) ?
 								options.tab_pane_id( index, element) :
 								"___" + ( index + 1 );
-								$( element ).attr( "id", id );
+
+							$( element ).attr( "id", id );
 						}
 
 						ul += helpers.generate_tab( index, element );
@@ -71,16 +73,17 @@
 
 						helpers.showLoadingIcon( options );
 
-						link.parent().addClass( options.active_class ).siblings("li").removeClass( options.active_class );
+						link.parent().addClass( options.active_class ).siblings( "li" ).removeClass( options.active_class );
 
 						$this.children( options.tab_pane_selector ).each(function() {
-							$( this ).slideUp( 'fast' ).removeClass( options.active_class );
+							$( this ).slideUp( "fast" ).removeClass( options.active_class );
 						});
 
-						$this.children( options.tab_pane_selector ).each(function( index, e ) {
-							if ( link.attr( "rel" ) == $( this ).attr( "id" ) ) {
+						$this.children( options.tab_pane_selector ).each(function( index ) {
+							if ( link.attr( "rel" ) === $( this ).attr( "id" ) ) {
 								try {
 									helpers.load( this );
+
 									if ( $.cookie ) {
 										$.cookie( options.cookie_name, index, { path: options.cookie_path } );
 									}
@@ -92,8 +95,9 @@
 					});
 
 					helpers.showLoadingIcon( options );
+
 					$this.children( options.tab_pane_selector ).each(function( index, elt ) {
-						if ( index == active_tab_index ) {
+						if ( index === active_tab_index ) {
 							helpers.load( elt );
 						} else {
 							$( elt ).slideUp( "fast" ).removeClass( options.active_class );
@@ -104,32 +108,56 @@
 		};
 
 		var helpers = {
+
 			generate_tab: function( index, element ) {
+
 				var id = options.tab_id && $.isFunction( options.tab_id ) ? options.tab_id( element.id ) : element.id;
+
 				var cls = options.tab_class;
 
 				if ( $( element ).data( "tab-class" ) ) {
 					cls += " " + ( $( element ).data( "tab-class" ) );
 				}
 
-				cls += index == active_tab_index ? " " + options.active_class : "";
+				cls += index === active_tab_index ? " " + options.active_class : "";
 
-				var label = $( element ).attr( "title" ) ||
-					( $( options.tab_label_selector, $( element ) ).length ?
-					$( options.tab_label_selector, $( element ) ).get( 0 ).innerHTML :
-						options.tab_label && $.isFunction( options.tab_label ) ? options.tab_label( index, element ) : "Tab " + ( index + 1 ));
+				var label, link;
 
-				var link = '<a href="' + ( $( element ).attr( "rel" ) || "#" + element.id ) + '" rel="' + element.id + '"><span>' + label + '</span></a>';
-				return '<li class="' + cls + '" id="' + id + '">' + link + '</li>';
+				label = $( element ).data( "autotabs-label" );
+
+				if ( typeof label === "undefined" ) {
+					label = $( element ).attr( "title" );
+				}
+
+				if ( typeof label === "undefined" && $( options.tab_label_selector, $( element ) ).length ) {
+					label = $( options.tab_label_selector, $( element ) ).get( 0 ).innerHTML;
+				}
+
+				if ( typeof label === "undefined" ) {
+					label = options.tab_label && $.isFunction( options.tab_label ) ? options.tab_label( index, element ) : "Tab " + ( index + 1 );
+				}
+
+				link = "<a href='" + ( $( element ).attr( "rel" ) || "#" + element.id ) + "' rel='" + element.id + "'><span>" + label + "</span></a>";
+
+				return "<li class='" + cls + "' id='" + id + "'>" + link + "</li>";
 			},
 
 			load: function( pane ) {
+
 				var success = helpers.getSuccess( pane.id );
-				if ( ( url = $( pane  ).attr( "rel" ) ) && ($.trim( $( pane ).html())  === "" || options.force_refresh ) ) {
+
+				var url = $( pane ).data( "autotabs-url" );
+
+				if (typeof url === "undefined" ) {
+					url = $( pane  ).attr( "rel" );
+				}
+
+				if ( typeof url !== "undefined" && ($.trim( $( pane ).html())  === "" || options.force_refresh ) ) {
 					$( pane ).empty();
+
 					$.ajax({
 						url: url,
-						error: function() { location.reload( true ); },
+						error: function() { window.location.reload( true ); },
 						success: function( data ) {
 							$( pane ).html( data );
 							$( pane ).slideDown( "fast" ).addClass( options.active_class );
@@ -143,8 +171,11 @@
 				}
 				else {
 					$( pane ).slideDown( "fast" ).addClass( options.active_class );
+
 					processing = false;
+
 					helpers.hideLoadingIcon( options );
+
 					if ( success && $.isFunction( success ) ) {
 						success.call( pane );
 					}
@@ -201,11 +232,11 @@
 		cookie_name: "active_tab",
 		cookie_path: "/",
 		force_refresh: false,
-		tab_orphans: false,          // display a tab even for a single orphan child element
+		tab_orphans: false,
 		loading_icon: "#loading",
 		tab_id: function( id ) { return "__" + id; },
-		tab_label: function( index, element ) { return "Tab " + ( index + 1 ); },
-		tab_pane_id: function( index, element ) { return "___" + ( index + 1 ); },
+		tab_label: function( index ) { return "Tab " + ( index + 1 ); },
+		tab_pane_id: function( index ) { return "___" + ( index + 1 ); },
 		vertical: false
 	};
 } )( jQuery );

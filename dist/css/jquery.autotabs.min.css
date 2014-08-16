@@ -1,0 +1,7 @@
+ul.autotabs{list-style:none;overflow:hidden;padding:.5em 0 1em;margin:0}
+li.autotab{list-style-type:none;display:inline-block;padding:0;margin:0 1px 0 0;line-height:150%;box-sizing:border-box}
+li.autotab a{display:block;text-decoration:none;color:#777;margin:0;padding:5px 10px;box-sizing:border-box;border:1px solid #666;border-bottom:0;-webkit-border-radius:4px 4px 0 0;-moz-border-radius:4px 4px 0 0;border-radius:4px 4px 0 0;background-color:#efefef;text-align:center}
+li.current a{background-color:#fff;color:#000;cursor:default}
+li.autotab:hover{background-color:#fff;color:#000}
+.tab-pane{display:none}
+.current{display:block}

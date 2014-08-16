@@ -1,0 +1,5 @@
+.vertical{width:12em;float:left;margin:0 10px 0 0;padding:0;border-right:1px solid #ddd;box-sizing:border-box}
+.vertical li.autotab{display:block;float:none}
+.vertical li.autotab a{border:1px dotted #ddd;border-width:0 0 1px;background-color:#fff;text-align:left}
+.vertical .current{text-align:right;font-weight:700}
+.tab-pane{padding-left:13em}

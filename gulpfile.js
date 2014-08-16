@@ -29,7 +29,7 @@ gulp.task('jshint', function() {
  });
 
 gulp.task('jsonlint', function() {
-	gulp.src('./autotabs.jquery.json')
+	gulp.src('./*.json')
 		.pipe(jsonlint())
 		.pipe(jsonlint.report('verbose'));
 });

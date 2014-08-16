@@ -1,6 +1,6 @@
 {
   "name": "autotabs",
-  "version": "2.0.16",
+  "version": "2.0.17",
   "homepage": "https://github.com/opichon/autotabs",
   "authors": [
     "Olivier Pichon <op@united-asian.com>"
@@ -10,7 +10,7 @@
     "dist/js/jquery.autotabs.js",
     "dist/js/jquery.autotabs.min.js",
     "dist/css/jquery.autotabs.css",
-    "dist/css/jquery.autotabs.vertical.css"
+    "dist/css/jquery.autotabs.vertical.css",
     "dist/js/jquery.js",
     "dist/js/jquery.cookie.js"
   ],
@@ -29,7 +29,7 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components"
+    "bower_components",
     "css",
     "src",
     "doc"

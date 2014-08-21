@@ -54,7 +54,7 @@
 
 					if ( !tabs ) { tabs = $this; }
 
-					$( "." + options.tabs_class, tabs ).remove();
+					$( "ul." + options.tabs_class.replace( /\s/, "." ), tabs ).remove();
 
 					tabs.prepend( ul );
 

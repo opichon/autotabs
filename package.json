@@ -1,13 +1,10 @@
 {
   "name": "jquery.autotabs",
-  "version": "2.0.11",
+  "version": "2.0.19",
   "description": "A jQuery plugin to automatically generate tabs based on your markup",
   "main": "index.js",
   "directories": {
     "doc": "doc"
-  },
-  "dependencies": {
-    "grunt": "~0.4.1"
   },
   "devDependencies": {
     "gulp": "^3.7.0",
@@ -16,10 +13,10 @@
     "gulp-install": "^0.1.5",
     "gulp-jshint": "^1.8.4",
     "gulp-json-lint": "^0.0.1",
-    "main-bower-files": "^1.0.2",
     "gulp-minify-css": "^0.3.7",
     "gulp-rename": "^1.2.0",
-    "gulp-uglify": "^0.3.1"
+    "gulp-uglify": "^0.3.1",
+    "main-bower-files": "^1.0.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

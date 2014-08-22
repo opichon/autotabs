@@ -148,7 +148,7 @@
 
 				var url = $( pane ).data( "autotabs-url" );
 
-				if (typeof url === "undefined" ) {
+				if ( typeof url === "undefined" ) {
 					url = $( pane  ).attr( "rel" );
 				}
 

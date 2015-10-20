@@ -1,6 +1,6 @@
 {
   "name": "autotabs",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "homepage": "https://github.com/opichon/autotabs",
   "authors": [
     "Olivier Pichon <op@united-asian.com>"
@@ -12,9 +12,7 @@
     "dist/css/jquery.autotabs.css",
     "dist/css/jquery.autotabs.min.css",
     "dist/css/jquery.autotabs.vertical.css",
-    "dist/css/jquery.autotabs.vertical.min.css",
-    "dist/js/jquery.js",
-    "dist/js/jquery.cookie.js"
+    "dist/css/jquery.autotabs.vertical.min.css"
   ],
   "keywords": [
     "jquery",
@@ -23,7 +21,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "jquery": "~1.6.4"
+    "jquery": ">=1.6.4 ~1"
   },
   "devDependencies": {
     "jquery.cookie": "~1.4"

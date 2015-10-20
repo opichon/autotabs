@@ -1,6 +1,6 @@
 {
   "name": "jquery.autotabs",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "A jQuery plugin to automatically generate tabs based on your markup",
   "main": "index.js",
   "directories": {
